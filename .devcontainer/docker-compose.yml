@@ -16,6 +16,7 @@ services:
                 PROTOC_VERSION: 3.15.8
                 PROTOC_GEN_GO_VERSION: 1.26.0
                 PROTOC_GEN_GO_GRPC_VERSION: 1.1.0
+                EVANS_CLI_VERSION: 0.9.3
 
         volumes:
             - ..:/workspace:cached

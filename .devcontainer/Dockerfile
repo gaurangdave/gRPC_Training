@@ -39,7 +39,11 @@ RUN wget https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOC
 # ENV PROTOC_PATH ${HOME}/go    
 # ENV PATH $PATH:${HOME}/.local/bin/protoc
 
-
+# Installing EVANs CLI
+ARG EVANS_CLI_VERSION=0.9.3
+RUN wget https://github.com/ktr0731/evans/releases/download/${EVANS_CLI_VERSION}/evans_linux_amd64.tar.gz \
+    && tar -C /usr/local/bin/ -xzf evans_linux_amd64.tar.gz \
+    && rm evans_linux_amd64.tar.gz
 
 # Installing Protocol Buffer Go Plugin
 ARG PROTOC_GEN_GO_VERSION=1.26.0
@@ -57,8 +61,8 @@ ENV PATH $PATH:$(go env GOPATH)/bin
 # Exporting path for all go libraries.
 ENV PATH $PATH:${HOME}/go/bin
 
-
-RUN sudo chown -R node:node /home/node/go
+# 
+RUN sudo chown -R node:node /home/node/
 
 # Additional libraries and frameworks
 RUN su node -c "npm install -g typescript"

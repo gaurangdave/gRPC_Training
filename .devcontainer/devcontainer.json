@@ -32,7 +32,7 @@
 		"christian-kohler.npm-intellisense",
 		"esbenp.prettier-vscode",
 		"ms-python.python",
-		"visualstudioexptteam.vscodeintellicode"
+		"zxh404.vscode-proto3"
 	],
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.

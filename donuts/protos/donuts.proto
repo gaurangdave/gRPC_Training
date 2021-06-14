@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+package donuts;
+
+option go_package = "./protos";
+
+message Donuts {
+     string id = 1;
+     string name = 2;
+     int32  price = 3;
+     float  rating = 4;
+}
+
+message DonutsOrder {
+     Donuts donut = 1;
+     int32 count = 2;
+     int32 cost = 3;
+}
+
+message AreYouOpenResponse {
+     bool reponse = 1;
+}
+
+message AreYouOpenRequest {
+     string dayOfTheWeek = 1;
+}
+
+message CreateDonutsRequest {
+     Donuts donut = 1;
+     int32 count = 2;
+}
+
+message CreateDonutsResponse {
+     bool created = 1;
+}
+
+message GetDonutsListRequest {}
+
+message GetDonutsListResponse {
+     repeated Donuts donuts= 1;
+}
+
+message OrderDonutsRequest {
+     repeated DonutsOrder order= 1;
+     int32 totalCost = 2;
+}
+
+message OrderDonutsResponse {
+     bool response = 1;
+}
+
+message UpdateDonutsRequest {
+     Donuts donut = 1;
+     int32 count =2;
+}
+
+message UpdateDonutsReponse {
+     bool reponse = 1;
+}
+
+message ClearDonutsRequest {
+     repeated string donutIds = 1;
+}
+
+message ClearDonutsResponse {
+     bool response = 1;
+}
+
+service DonutsService {
+     // unary APIs
+
+     // RPC to check if the donut shop is open or not
+     rpc AreYouOpen(AreYouOpenRequest) returns (AreYouOpenResponse) {};
+
+     // RPC to update db with newly prepared donuts
+     rpc CreateDonuts(CreateDonutsRequest) returns (CreateDonutsResponse) {};
+
+     // RPC to get list of all available donuts
+     rpc GetDonutsList(GetDonutsListRequest) returns (GetDonutsListResponse) {};
+
+     // RPC to order donuts online
+     rpc OrderDonuts(OrderDonutsRequest) returns (OrderDonutsResponse) {};
+
+     // RPC to update the database with donuts sold in shop
+     rpc UpdateDonuts(UpdateDonutsRequest) returns (UpdateDonutsReponse) {};
+
+     // RPC to delete donuts from database at the end of  the day
+     rpc ClearDonuts(ClearDonutsRequest) returns (ClearDonutsResponse) {};
+}
+
